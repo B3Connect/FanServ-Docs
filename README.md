@@ -1,4 +1,4 @@
-# FanServe-Docs
+# FanServ-Docs
 
 Developer information for the integration of the FanServe Service.
 
