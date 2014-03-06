@@ -78,61 +78,47 @@ Configuring the settings provides you an opportunity to customize your applicati
 **Required Framework Configuration Settings**
 
 In AppDelegate, configure settings for FanServer by editing default behavior of framework:
-```C#
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-
-{
-
-	...
-
-[FanServer setWindow:self.window];
-
-[FanServer setAppid:@"SECRET"];
-
-[FanServer setAdType:FanServerAdTypeBanner size:@"320x50" deviceType:FanServerDeviceTypeMobile];
-```
 
 ![](image_2.png)
 
-### Set Main Window for Ads
+*1. Set Main Window for Ads*
 
 Method required to set main window of your application, please be sure that this method will be used when main window of your application is created, in other case you could crash your application.
 
-eg. [FanServer setWindow: [appDelegate window]];
+eg. `[FanServer setWindow: [appDelegate window]];`
 
+```csharp
 + (void) setWindow: (UIWindow *) w;
+```
 
-### Set Values for AppID Argument as String
+*2. Set Values for AppID Argument as String*
 
-### Next required method which identifies your application and provides appropriate context on the admin side.
+Next required method which identifies your application and provides appropriate context on the admin side.
 
-### eg. [FanServer setAppid: @"YOUR_ID"];
+eg. `[FanServer setAppid: @"YOUR_ID"];`
 
-### + (void) setAppid:(NSString *)appId;
+```csharp
++ (void) setAppid:(NSString *)appId;
+```
 
-### Set Ad Type, Screen Size and Device Type
+*3. Set Ad Type, Screen Size and Device Type*
 
 The framework remembers your most recent choice of values for font type, screen size and device type. If you don't set these parameters for each screen, the next ad will use the same information as the previous one.
 
-eg. [FanServer setAdType: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];
+eg. `[FanServer setAdType: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];`
 
-available ad types
+available ad types:
 
+```csharp
 typedef enum{
-
     FanServerAdTypeInterstitial = 1,
-
     FanServerAdTypeBanner,
-
     FanServerAdTypeLeaderboard,
-
     FanServerAdTypeSkyscraper,
-
     FanServerAdTypeExpandable,
-
     FanServerAdTypePopup
-
 } FanServerAdType;
+```
 
 **List of Available Ad Types**
 
