@@ -9,11 +9,11 @@
 2. [Configuration](#2-configuration)
   * Required Framework Configuration Settings
   * Optional Framework Configuration Settings
-3. [Tips](#3-tips)Tips
+3. [Tips](#3-tips)
   * Adding Header Information
   * Preload Ads for Specific Device Type and Banner Size
     
-### Customizing FanServer
+### [Customizing FanServ](#customizing-fanserv-1)
 
 1. Set Ad Type
     1. Banner
