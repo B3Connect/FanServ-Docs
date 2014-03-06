@@ -285,10 +285,10 @@ When you want to display an ad, but assets have not finised downloading, there a
 
 1. To make sure that ads do not appear,use `setWaitForImages:NO`
 2. To display the ad when the download is finished, use `setWaitForImages:YES` 
-    ```objective-c
-    [FanServer setWaitForImages:YES];
-    + (void) setWaitForImages: (BOOL) wait;
-    ```
+  ```objective-c
+  [FanServer setWaitForImages:YES];
+  + (void) setWaitForImages: (BOOL) wait;
+  ```
 
 **Enable or Disable Rotating Banner Ad **
 
