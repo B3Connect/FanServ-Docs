@@ -285,163 +285,128 @@ When you want to display an ad, but assets have not finised downloading, there a
 
 1. To make sure that ads do not appear,use `setWaitForImages:NO`
 2. To display the ad when the download is finished, use `setWaitForImages:YES` 
-  ```objective-c
-  [FanServer setWaitForImages:YES];
-  + (void) setWaitForImages: (BOOL) wait;
-  ```
+```objective-c
+[FanServer setWaitForImages:YES];
++ (void) setWaitForImages: (BOOL) wait;
+```
 
-**Enable or Disable Rotating Banner Ad **
+### 9. Enable or Disable Rotating Banner Ad
 
 When the device displays ads in landscape, use this method to turn the ad on or off.
 
-eg. [FanServer setRotateBannerInLandscape: YES];
-
+```objective-c
+[FanServer setRotateBannerInLandscape: YES];
 + (void) setRotateBannerInLandscape: (BOOL) rotate;
+```
 
-### Configure Animation Style
+### 10. Configure Animation Style
 
 Developer could choose one of styles that we've created in SDK for displaying ads. He can't define his own style.  So he can choose if ad should enter to the main screen from left, right, top, bottom or fade (change alpha from 0 to 1)
 
- eg. [FanServer setAnimationStyle: FanServerAdAnimationFade];
+ eg. `[FanServer setAnimationStyle: FanServerAdAnimationFade];`
 
- available animation styles:
+Available animation styles:
 
+```objective-c
 typedef enum{
-
     FanServerAdAnimationFromLeft = 1,
-
     FanServerAdAnimationFromRight,
-
     FanServerAdAnimationFromTop,
-
     FanServerAdAnimationFromBottom,
-
     FanServerAdAnimationFade
-
 } FanServerAdAnimationOptions;
-
 + (void) setAnimationStyle: (FanServerAdAnimationOptions) style;
+```
 
-### Set Video Pre-Roll Before Playing Audio
+### 11. Set Video Pre-Roll Before Playing Audio
 
 Use this procedure when you want to play a  video preroll before the audio begins.
 
+```objective-c
 - (void) viewWillAppear:(BOOL) animated
-
 {
-
     [FanServer setAudioPlaying:YES];
-
     [super viewWillAppear:animated];
-
 }
+```
 
-**FanServer Filters**
+## FanServer Filters
 
 You have opportunities to target your ads for specified group or locations.
 
-### Enable Device to Get Location
+### 1.Enable Device to Get Location
 
 You have ability to display ads for a specific location or region, just allow to get user location and set properly your settings.
 
- eg. [FanServer allowGetLocation:YES];
-
+```objective-c
+[FanServer allowGetLocation:YES];
 + (void) allowGetLocation: (BOOL) choice;
+```
 
-### Filter Ads by Age
+### 2. Filter Ads by Age
 
 You can filter ads by age and display different for users who are adult or kids.
 
-eg. [FanServer setAge: 20];
-
+```objective-c
+[FanServer setAge: 20];
 + (void) setAge: (int) age;
+```
 
-### Filter Ads by Gender
+### 3. Filter Ads by Gender
 
 You have ability to display ads depending on the user gender, just provide their gender to the method described below.
 
+```objective-c
 typedef enum{
-
     FanServerAdFemale = 1,
-
     FanServerAdMale,
-
     FanServerAdAny
-
 } FanServerAdGender;
-
 + (void) setGender: (FanServerAdGender) gender;
+```
 
 ## Advanced Methods and Properties
 
-**Delegate Methods**
+### 1. Delegate Methods
 
-Use **setAdsDelegate** to deal with certain situations such as making a banner appear,closing a banner and tapping an ad. 
+Use `setAdsDelegate` to deal with certain situations such as making a banner appear, closing a banner and tapping an ad. 
 
+```objective-c
 + (void) setAdsDelegate:(id<FanServerAdsDelegate>)delegate;
+```
 
 Use methods from the following list:
 
+```objective-c
 @protocol FanServerAdsDelegate <NSObject>
-
 @optional
-
 - (void) fanServerBannerDidAppear;
-
 - (void) fanServerBannerDidClose;
-
 - (void) fanServerInterstitialDidAppear;
-
 - (void) fanServerInterstitialDidClose;
-
 - (void) fanServerAdDidFail;
-
 - (void) fanServerPopupDidAppear;
-
 - (void) fanServerPopupDidClose;
-
 - (void) fanServerRequestDidFail;
-
 - (void) fanServerAdTapped;
-
 - (void) fanServerDidBackFromAdView;
-
 @end
+```
 
+## Examples
 
-
-
-**Examples:**
-
-**[INTERSTITIA**L](http://fanserv.scottarnold.org/advertisers/#)
-
-**Standard / Retina**
-
-**300x250 / 600x500**
+### Standard (300x250) / Retina (600x500)
 
 ![](image_3.png)
 
-**[BANNE**R](http://fanserv.scottarnold.org/advertisers/#)
-
-**Standard / Retina**
-
-**320x50 / 640x50**
+### Standard (320x50) / Retina (640x50)
 
 ![](image_4.png)
 
-**[EXPANDABL**E](http://fanserv.scottarnold.org/advertisers/#)
-
-**Standard / Retina**
-
-**320x50 / 640x50**
+### Standard (320x50) / Retina (640x50)
 
 ![](image_5.png)
 
-**[VIDE**O](http://fanserv.scottarnold.org/advertisers/#)
-
-**Standard / Retina**
-
-**320x480 / 640x960**
+### Standard (320x480) / Retina (640x960)
 
 ![](image_6.png)
-
