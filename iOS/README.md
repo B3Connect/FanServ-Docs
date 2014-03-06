@@ -176,7 +176,7 @@ typedef enum{
 + (void) preloadAds:(FanServerAdType)type size:(NSString *)size deviceType:(FanServerDeviceType) deviceType;
 ```
 
-## Customizing FanServer
+## Customizing FanServ
 
 These settings give you more control of how ads are displayed.  If you do nothing the ads will be loaded and displayed with default behaviors set in the Required and Optional Framework Configuration Settings sections.
 
