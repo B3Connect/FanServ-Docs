@@ -1,145 +1,84 @@
-# **FanServer iOS SDK Integration**
+# FanServer iOS SDK Integration
 
-1. Getting Started
+### Integration Guidelines
 
-    1. Overview
+1. Set Up
+  * Required Frameworks
+  * Adding External Resource
+  * Project Complete
+2. Configuration
+  * Required Framework Configuration Settings
+  * Optional Framework Configuration Settings
+3. Configuration Tip: Adding Header Information
+    
+### Customizing FanServer
 
-    2. Steps 1 - 4
+1. Set Ad Type
+    1. Banner
+    2. Intertitial
+    3. Expandable Banner
+    4. Video Pre-Roll
+2. Hide Ads on Screen
+3. Enable or Disable Ads on Screen
+4. Specify Screen Names
+5. Close Banner Ads
+6. Show Ads When They Finish Downloading
+7. Set Video Pre-Roll Before Playing Audio
+    
+### FanServer Filters
 
-    3. For Additional Support
+1. By Age
+2. By Gender
+3. By Location
 
-2. Integration Guidelines
+### Advanced Methods and Properties
 
-    4. Set Up
+1. Delegate Methods
 
-        1. Required Frameworks
+## Integration Guidelines
 
-        2. Adding External Resource
+### 1. Setup
 
-        3. Project Complete
+Set up FanServer 1.0.1 by adding `FanServerFramework.framework` to the required frameworks:
 
-    5. Configuration
+* `CoreLocation.framework`
+* `MediaPlayer.framework`
+* `Security.framework`
 
-        4. Required Framework Configuration Settings
+Follow these next three (3) steps to add `FanServer.framework` to your project:
 
-        5. Optional Framework Configuration Settings
-
-    6. Configuration Tip:  Adding Header Information
-
-3. Customizing FanServer
-
-    7. Set Ad Type
-
-        6. Banner
-
-        7. Intertitial
-
-        8. Expandable Banner
-
-        9. Video Pre-Roll
-
-    8. Hide Ads on Screen
-
-    9. Enable or Disable Ads on Screen
-
-    10. Specify Screen Names
-
-    11. Close Banner Ads
-
-    12. Show Ads When They Finish Downloading
-
-    13. Set Video Pre-Roll Before Playing Audio
-
-4. FanServer Filters
-
-    14. By Age
-
-    15. By Gender
-
-    16. By Location
-
-5. Advanced Methods and Properties
-
-    17. Delegate Methods
-
-Getting Started
-
-**Overview**
-
-The FanServer SDK is designed exclusively for sports app publishers to monetize their fan bases with a select group of premium sports marketing brands and advertisers.
-
-**Step 1**
-
-Download the FanServer SDK for iOS.  You will need to have joined the FanServ Publisher network in order to access the SDK.  
-
-**Step 2**
-
-Follow the Integration Guidelines to install the SDK.
-
-**Step 3**
-
-Customize your ad requests and release your newly monetized app.
-
-**Step 4**
-
-Manage your inventory, payments and reports through the FanServ Publisher Portal.
-
-**For Additional Support**
-
-Have any additional questions or looking for somehting specific not included here, please don’t hesitate to contact us to get the help you need.
-
-*Last modified on March, 3 2014 at 2:29pm*
-
-Integration Guidelines
-
-**A. Setup**
-
-Set up FanServer 1.0.1 by adding **FanServerFramework.framework** to the required frameworks:
-
-* CoreLocation.framework
-
-* MediaPlayer.framework
-
-* Security.framework
-
-Follow these next three (3) steps to add FanServer.framework to your project:
-
-**1.  Required Frameworks**
+**Required Frameworks**
 
 To find the required frameworks:
 
-    1. Go to your project settings
-
-    2. Then go to Build Phases
-
-    3. Link Binary With Libraries
-
-    4. Click "+" to add new framework
-
-    5. Find required frameworks and add to the project
+1. Go to your project settings
+2. Then go to Build Phases
+3. Link Binary With Libraries
+4. Click "+" to add new framework
+5. Find required frameworks and add to the project
 
 You should see a screen similar to this:
 
-![image alt text](image_0.jpg)
+![](image_0.jpg)
 
-**2.  Adding External Resource**
+**Adding External Resource**
 
-FanServerFramework.framework is an external resource and can be added by clicking "Add Other" and locating path to the FanServerFramework.framework library.  You’ll need to repeat this process, until you have finished adding the FanServer.framework to all of our required frameworks listed above.  
+`FanServerFramework.framework` is an external resource and can be added by clicking "Add Other" and locating path to the `FanServerFramework.framework` library.  You'll need to repeat this process, until you have finished adding the FanServer.framework to all of our required frameworks listed above.  
 
-**3.  Project Complete**
+**Project Complete**
 
 When complete your project should have a similar view as the image below:
 
-![image alt text](image_1.png)
+![](image_1.png)
 
-**B. ****Configuration**
+### 2. Configuration
 
-Configuring the settings provides you an opportunity to customize your application to receive and display ads.  Once the "Required Framework Configuration Settings" have been made in AppDelegate, you should start to see your first ads.  For greater controls over where ads are served on screen, on what screens, at what sizes, etc., you have ability to set the “Optional Framework Configuration Settings” and explore the individual controls in the “Customizing the Configuration of the FanServ SDK” sections.
+Configuring the settings provides you an opportunity to customize your application to receive and display ads.  Once the "Required Framework Configuration Settings" have been made in AppDelegate, you should start to see your first ads.  For greater controls over where ads are served on screen, on what screens, at what sizes, etc., you have ability to set the "Optional Framework Configuration Settings" and explore the individual controls in the "Customizing the Configuration of the FanServ SDK" sections.
 
 **Required Framework Configuration Settings**
 
 In AppDelegate, configure settings for FanServer by editing default behavior of framework:
-
+```C#
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 
 {
@@ -151,8 +90,9 @@ In AppDelegate, configure settings for FanServer by editing default behavior of 
 [FanServer setAppid:@"SECRET"];
 
 [FanServer setAdType:FanServerAdTypeBanner size:@"320x50" deviceType:FanServerDeviceTypeMobile];
+```
 
-![image alt text](image_2.png)
+![](image_2.png)
 
 ### Set Main Window for Ads
 
@@ -172,7 +112,7 @@ eg. [FanServer setWindow: [appDelegate window]];
 
 ### Set Ad Type, Screen Size and Device Type
 
-The framework remembers your most recent choice of values for font type, screen size and device type. If you don’t set these parameters for each screen, the next ad will use the same information as the previous one.
+The framework remembers your most recent choice of values for font type, screen size and device type. If you don't set these parameters for each screen, the next ad will use the same information as the previous one.
 
 eg. [FanServer setAdType: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];
 
@@ -298,7 +238,7 @@ Call **[FanServer setAdType:FanServerAdType size:@"size" deviceType:FanServerDev
 
 ### Specify Screen Name
 
-By specifying a name for all screens that show ads, you improve the tracking and reporting capabilities of FanServer and will allow for reports to be run at a screen level.  So in the sample below, we would then be able to see how ads for "MainWindow" performed in aggregate on your application.  If you don’t set one, the software will set a default name to **ClassName** for each specific screen and reports will only be aggregate at the application level.  
+By specifying a name for all screens that show ads, you improve the tracking and reporting capabilities of FanServer and will allow for reports to be run at a screen level.  So in the sample below, we would then be able to see how ads for "MainWindow" performed in aggregate on your application.  If you don't set one, the software will set a default name to **ClassName** for each specific screen and reports will only be aggregate at the application level.  
 
 **+ setScreenName:(NSString* ) screenName;**
 
@@ -362,13 +302,14 @@ You can decide whether to show ads automatically when the screen appears.
 
 	[FanServer setIsAdVisible: YES];
 
-* When you change the property to YES, you have to set [FanServer setIsAdVisible: NO]; for each **UIViewController** that you don’t want to show the ad automatically. 
+* When you change the property to YES, you have to set [FanServer setIsAdVisible: NO]; for each **UIViewController** that you don't want to show the ad automatically. 
 
 	[FanServer setIsAdVisible: NO];
 
 	eg. [FanServer setShowAdOnLoad:NO];
 
-### Close Banner Ads
+### 
+Close Banner Ads
 
 When you scroll or go back to a previous screen, banner ads will be closed automatically after a few seconds.
 
@@ -396,7 +337,7 @@ eg. [FanServer setRotateBannerInLandscape: YES];
 
 ### Configure Animation Style
 
-Developer could choose one of styles that we’ve created in SDK for displaying ads. He can’t define his own style.  So he can choose if ad should enter to the main screen from left, right, top, bottom or fade (change alpha from 0 to 1)
+Developer could choose one of styles that we've created in SDK for displaying ads. He can't define his own style.  So he can choose if ad should enter to the main screen from left, right, top, bottom or fade (change alpha from 0 to 1)
 
  eg. [FanServer setAnimationStyle: FanServerAdAnimationFade];
 
@@ -506,6 +447,7 @@ Use methods from the following list:
 
 
 
+
 **Examples:**
 
 **[INTERSTITIA**L](http://fanserv.scottarnold.org/advertisers/#)
@@ -514,7 +456,7 @@ Use methods from the following list:
 
 **300x250 / 600x500**
 
-![image alt text](image_3.png)
+![](image_3.png)
 
 **[BANNE**R](http://fanserv.scottarnold.org/advertisers/#)
 
@@ -522,7 +464,7 @@ Use methods from the following list:
 
 **320x50 / 640x50**
 
-![image alt text](image_4.png)
+![](image_4.png)
 
 **[EXPANDABL**E](http://fanserv.scottarnold.org/advertisers/#)
 
@@ -530,7 +472,7 @@ Use methods from the following list:
 
 **320x50 / 640x50**
 
-![image alt text](image_5.png)
+![](image_5.png)
 
 **[VIDE**O](http://fanserv.scottarnold.org/advertisers/#)
 
@@ -538,5 +480,5 @@ Use methods from the following list:
 
 **320x480 / 640x960**
 
-![image alt text](image_6.png)
+![](image_6.png)
 
