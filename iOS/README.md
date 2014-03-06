@@ -2,7 +2,7 @@
 
 ### Integration Guidelines
 
-1. Set Up
+1. [Set Up](#1-setup)
   * Required Frameworks
   * Adding External Resource
   * Project Complete
