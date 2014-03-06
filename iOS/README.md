@@ -15,27 +15,30 @@
     
 ### [Customizing FanServ](#customizing-fanserv-1)
 
-1. Set Ad Type
-    1. Banner
-    2. Intertitial
-    3. Expandable Banner
-    4. Video Pre-Roll
-2. Hide Ads on Screen
-3. Enable or Disable Ads on Screen
-4. Specify Screen Names
-5. Close Banner Ads
-6. Show Ads When They Finish Downloading
-7. Set Video Pre-Roll Before Playing Audio
+1. [Set Ad Type](#1-set-ad-type)
+2. [Specify Screen Name](#2-specify-screen-name)
+3. [Show Ad on a Specific Screen](#3-show-ad-on-a-specific-screen)
+4. [Hide Ads on Screen](#4-hide-ads-on-screen)
+5. [Enable or Disable Ad on Current Screen](#5-enable-or-disable-ad-on-current-screen)
+6. [Change Default to Show Ads Manuualy or Automatically](#6-change-default-to-show-ads-manuualy-or-automatically)
+7. [Close Banner Ads](#7-close-banner-ads)
+8. [Show Ads When They Finish Downloading](#8-show-ads-when-they-finish-downloading)
+9. [Enable or Disable Rotating Banner Ad](#9-enable-or-disable-rotating-banner-ad)
+10. [Configure Animation Style](#10-configure-animation-style)
+11. [Set Video Pre-Roll Before Playing Audio](#11-set-video-pre-roll-before-playing-audio)
     
-### FanServer Filters
+### [FanServer Filters](#fanserver-filters-1)
 
-1. By Age
-2. By Gender
-3. By Location
+1. [Enable Device to Get Location](#1-enable-device-to-get-location)
+2. [Filter Ads by Age](#2-filter-ads-by-age)
+3. [Filter Ads by Gender](#3-filter-ads-by-gender)
 
-### Advanced Methods and Properties
+### [Advanced Methods and Properties](#advanced-methods-and-properties-1)
 
-1. Delegate Methods
+1. [Delegate Methods](#1-delegate-methods)
+
+### [Examples](#examples)
+
 
 ## Integration Guidelines
 
@@ -337,7 +340,7 @@ Use this procedure when you want to play a  video preroll before the audio begin
 
 You have opportunities to target your ads for specified group or locations.
 
-### 1.Enable Device to Get Location
+### 1. Enable Device to Get Location
 
 You have ability to display ads for a specific location or region, just allow to get user location and set properly your settings.
 
