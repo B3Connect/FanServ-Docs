@@ -1,16 +1,17 @@
 # FanServer iOS SDK Integration
 
-### Integration Guidelines
+### [Integration Guidelines](#integration-guidelines-1)
 
 1. [Set Up](#1-setup)
   * Required Frameworks
   * Adding External Resource
   * Project Complete
-2. Configuration
+2. [Configuration](#2-configuration)
   * Required Framework Configuration Settings
   * Optional Framework Configuration Settings
-3. Configuration Tip: Adding Header Information
-4. Configuration Tip: Preload Ads for Specific Device Type and Banner Size
+3. [Tips](#3-tips)Tips
+  * Adding Header Information
+  * Preload Ads for Specific Device Type and Banner Size
     
 ### Customizing FanServer
 
@@ -145,7 +146,9 @@ In AppDelegate, configure settings for FanServer by editing default behavior of 
 }
 ```
 
-### 3. Configuration Tip:  Adding Header Information
+### 3. Tips
+
+**Configuration Tip:  Adding Header Information**
 
 When you want to add a header for a screen, add this to your project:
 
@@ -155,7 +158,7 @@ import <FanServerFramework/FanServer.h>
 
 If you add `"ProjectName"-Prefix.pch`, you don't have to add this import to each header file that uses the `FanServerFramework`.
 
-### 4. Configuration Tip:  Preload Ads for Specific Device Type and Banner Size
+**Preload Ads for Specific Device Type and Banner Size**
 
 When you want to be sure that ad will be displayed since first time or you want to have control when ads should be downloaded use method to preload ads before they should be displayed
 
