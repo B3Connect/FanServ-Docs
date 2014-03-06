@@ -1,111 +1,542 @@
-# FanServ-Docs
+# **FanServer iOS SDK Integration**
 
-Developer information for the integration of the FanServe Service.
+1. Getting Started
 
-To get started:
+    1. Overview
 
-1. Register for a [publisher account](http://fanserv.com)
-2. Download the SDK via your personal download link provided in your registration email.
-3. Review integration documentation and test
+    2. Steps 1 - 4
 
-## Service Overview
+    3. For Additional Support
 
-Regardless of which SDK you are using, the following service features are available.
+2. Integration Guidelines
 
-_Explain Key Concepts Here. IE any metaphores or mental models devs should be aware of_
+    4. Set Up
 
-### Method One
+        1. Required Frameworks
 
-Provides the ability to do stuff like carbon silent marketing assault range-rover corporation assault j-pop digital paranoid city. shoes sunglasses systema footage rebar uplink euro-pop ablative tanto media man.
+        2. Adding External Resource
 
-**Request Paramerts**
-- foo : String
-- bar : Integer (optional)
+        3. Project Complete
 
-**Response**
-```JavaScript
+    5. Configuration
+
+        4. Required Framework Configuration Settings
+
+        5. Optional Framework Configuration Settings
+
+    6. Configuration Tip:  Adding Header Information
+
+3. Customizing FanServer
+
+    7. Set Ad Type
+
+        6. Banner
+
+        7. Intertitial
+
+        8. Expandable Banner
+
+        9. Video Pre-Roll
+
+    8. Hide Ads on Screen
+
+    9. Enable or Disable Ads on Screen
+
+    10. Specify Screen Names
+
+    11. Close Banner Ads
+
+    12. Show Ads When They Finish Downloading
+
+    13. Set Video Pre-Roll Before Playing Audio
+
+4. FanServer Filters
+
+    14. By Age
+
+    15. By Gender
+
+    16. By Location
+
+5. Advanced Methods and Properties
+
+    17. Delegate Methods
+
+Getting Started
+
+**Overview**
+
+The FanServer SDK is designed exclusively for sports app publishers to monetize their fan bases with a select group of premium sports marketing brands and advertisers.
+
+**Step 1**
+
+Download the FanServer SDK for iOS.  You will need to have joined the FanServ Publisher network in order to access the SDK.  
+
+**Step 2**
+
+Follow the Integration Guidelines to install the SDK.
+
+**Step 3**
+
+Customize your ad requests and release your newly monetized app.
+
+**Step 4**
+
+Manage your inventory, payments and reports through the FanServ Publisher Portal.
+
+**For Additional Support**
+
+Have any additional questions or looking for somehting specific not included here, please don’t hesitate to contact us to get the help you need.
+
+*Last modified on March, 3 2014 at 2:29pm*
+
+Integration Guidelines
+
+**A. Setup**
+
+Set up FanServer 1.0.1 by adding **FanServerFramework.framework** to the required frameworks:
+
+* CoreLocation.framework
+
+* MediaPlayer.framework
+
+* Security.framework
+
+Follow these next three (3) steps to add FanServer.framework to your project:
+
+**1.  Required Frameworks**
+
+To find the required frameworks:
+
+    1. Go to your project settings
+
+    2. Then go to Build Phases
+
+    3. Link Binary With Libraries
+
+    4. Click "+" to add new framework
+
+    5. Find required frameworks and add to the project
+
+You should see a screen similar to this:
+
+![image alt text](image_0.jpg)
+
+**2.  Adding External Resource**
+
+FanServerFramework.framework is an external resource and can be added by clicking "Add Other" and locating path to the FanServerFramework.framework library.  You’ll need to repeat this process, until you have finished adding the FanServer.framework to all of our required frameworks listed above.  
+
+**3.  Project Complete**
+
+When complete your project should have a similar view as the image below:
+
+![image alt text](image_1.png)
+
+**B. ****Configuration**
+
+Configuring the settings provides you an opportunity to customize your application to receive and display ads.  Once the "Required Framework Configuration Settings" have been made in AppDelegate, you should start to see your first ads.  For greater controls over where ads are served on screen, on what screens, at what sizes, etc., you have ability to set the “Optional Framework Configuration Settings” and explore the individual controls in the “Customizing the Configuration of the FanServ SDK” sections.
+
+**Required Framework Configuration Settings**
+
+In AppDelegate, configure settings for FanServer by editing default behavior of framework:
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
 {
-  foo : 'bar',
-  baz : 5
-}
-```
 
-### Method Two
+	...
 
-Provides the ability to do stuff like carbon silent marketing assault range-rover corporation assault j-pop digital paranoid city. shoes sunglasses systema footage rebar uplink euro-pop ablative tanto media man.
+[FanServer setWindow:self.window];
 
-**Request Paramerts**
-- foo : String
-- bar : Integer (optional)
+[FanServer setAppid:@"SECRET"];
 
-**Response**
-```JavaScript
+[FanServer setAdType:FanServerAdTypeBanner size:@"320x50" deviceType:FanServerDeviceTypeMobile];
+
+![image alt text](image_2.png)
+
+### Set Main Window for Ads
+
+Method required to set main window of your application, please be sure that this method will be used when main window of your application is created, in other case you could crash your application.
+
+eg. [FanServer setWindow: [appDelegate window]];
+
++ (void) setWindow: (UIWindow *) w;
+
+### Set Values for AppID Argument as String
+
+### Next required method which identifies your application and provides appropriate context on the admin side.
+
+### eg. [FanServer setAppid: @"YOUR_ID"];
+
+### + (void) setAppid:(NSString *)appId;
+
+### Set Ad Type, Screen Size and Device Type
+
+The framework remembers your most recent choice of values for font type, screen size and device type. If you don’t set these parameters for each screen, the next ad will use the same information as the previous one.
+
+eg. [FanServer setAdType: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];
+
+available ad types
+
+typedef enum{
+
+    FanServerAdTypeInterstitial = 1,
+
+    FanServerAdTypeBanner,
+
+    FanServerAdTypeLeaderboard,
+
+    FanServerAdTypeSkyscraper,
+
+    FanServerAdTypeExpandable,
+
+    FanServerAdTypePopup
+
+} FanServerAdType;
+
+**List of Available Ad Types**
+
+available ad types
+
+typedef enum{
+
+    FanServerAdTypeInterstitial = 1,
+
+    FanServerAdTypeBanner,
+
+    FanServerAdTypeLeaderboard,
+
+    FanServerAdTypeSkyscraper,
+
+    FanServerAdTypeExpandable,
+
+    FanServerAdTypePopup
+
+} FanServerAdType;
+
+### List of Available Device Types
+
+typedef enum{
+
+    FanServerDeviceTypeMobile = 1,
+
+    FanServerDeviceTypeTablet,
+
+    FanServerDeviceTypeWeb
+
+} FanServerDeviceType;
+
+**Optional Framework Configuration Settings**
+
+In AppDelegate, configure settings for FanServer by editing default behavior of framework:
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
 {
-  foo : 'bar',
-  baz : 5
+
+	...
+
+	[FanServer setRotateBannerInLandscape:NO];
+
+	[FanServer setWaitForImages:YES];
+
+	[FanServer setAnimationStyle:FanServerAdAnimationFade];
+
 }
-```
 
-### Method Three
+### Configuration Tip:  Adding Header Information
 
-Provides the ability to do stuff like carbon silent marketing assault range-rover corporation assault j-pop digital paranoid city. shoes sunglasses systema footage rebar uplink euro-pop ablative tanto media man.
+When you want to add a header for a screen, add this to your project:
 
-**Request Paramerts**
-- foo : String
-- bar : Integer (optional)
+ #import <FanServerFramework/FanServer.h> 
 
-**Response**
-```JavaScript
+If you add "ProjectName"-Prefix.pch, you don't have to add this import to each header file that uses the **FanServerFramework**.
+
+**Configuration Tip:  Preload Ads for Specific ****Device ****Type and ****Banner ****Size**
+
+When you want to be sure that ad will be displayed since first time or you want to have control when ads should be downloaded use method to preload ads before they should be displayed
+
+eg. [FanServer preloadAds: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];
+
+ available device types
+
+typedef enum{
+
+    FanServerDeviceTypeMobile = 1,
+
+    FanServerDeviceTypeTablet,
+
+    FanServerDeviceTypeWeb
+
+} FanServerDeviceType;
+
++ (void) preloadAds:(FanServerAdType)type size:(NSString *)size deviceType:(FanServerDeviceType) deviceType;
+
+### Customizing FanServer
+
+### Customizing the Configuration of the FanServer SDK
+
+These settings give you more control of how ads are displayed.  If you do nothing the ads will be loaded and displayed with default behaviors set in the Required and Optional Framework Configuration Settings sections.
+
+### Set Ad Type
+
+This is how to to set ad types and sizes
+
+**+ setAdType:(FanServerAdType) adType size:(NSString *)size deviceType:(FanServerDeviceType) deviceType;**
+
+Call **[FanServer setAdType:FanServerAdType size:@"size" deviceType:FanServerDeviceType];** in function **viewWillAppear**
+
+- (void) viewWillAppear:(BOOL) animated
+
 {
-  foo : 'bar',
-  baz : 5
+
+    [FanServer setAdType:FanServerAdTypeBanner size:@"320x50" deviceType:FanServerDeviceTypeMobile];
+
+    [super viewWillAppear:animated];
+
 }
-```
 
-## iOS SDK
+### Specify Screen Name
 
-Leadin copy for iOS SDK carbon silent marketing assault range-rover corporation assault j-pop digital paranoid city. shoes sunglasses systema footage rebar uplink euro-pop ablative tanto media man.
+By specifying a name for all screens that show ads, you improve the tracking and reporting capabilities of FanServer and will allow for reports to be run at a screen level.  So in the sample below, we would then be able to see how ads for "MainWindow" performed in aggregate on your application.  If you don’t set one, the software will set a default name to **ClassName** for each specific screen and reports will only be aggregate at the application level.  
 
-### Method One
+**+ setScreenName:(NSString* ) screenName;**
 
-Description for this example...
+**[FanServer setScreenName:@"MainWindow"];**
 
-**Example**
-```C#
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
-{ 
-    ... 
-    [B3AdServer setWindow:self.window]; 
-    [B3AdServer setRotateBannerInLandscape:NO]; 
-    [B3AdServer setLeague:@"LEAGUE" appid:@"SECRET"]; 
-    [B3AdServer setWaitForImages:YES]; 
-    [B3AdServer setAnimationStyle:B3AdAnimationFade]; 
+Set this property in** viewWillAppea**r, as the following example shows:
+
+(void) viewWillAppear:(BOOL) animated
+
+{
+
+    [FanServer setScreenName:@"MainWindow"];
+
+    [super viewWillAppear:animated];
+
 }
-```
 
-## Android SDK
+**Show Ad on a Specific Screen**
 
-Leadin copy for Android SDK carbon silent marketing assault range-rover corporation assault j-pop digital paranoid city. shoes sunglasses systema footage rebar uplink euro-pop ablative tanto media man.
+Use this method when you want to display an ad programatically.You can use different parameters to set ad position, type and size as well as device type, orientation and screen name. 
 
-### Show Ad for screen
+For example,
 
-Displaying the ads in any activity carried out by calling one of the methods:
++ (void) showBannerAd:(UIViewController*) adViewController size:(NSString *)adSize forView:(UIView *)view x:(int)x y:(int)y screenName: (NSString*) screenName;
 
-```
-public void startAd(Activity activity, String ad_type, String ad_size)
-```
+And
 
-where ad_type and ad_type are one of the following values:
++ (void) showAd:(UIViewController*)adViewController x:(int)x y:(int)y adType:(FanServerAdType) type size:(NSString *)adSize deviceType:(FanServerDeviceType)deviceType orientation:(UIImageOrientation) orientation screenName: (NSString*) screenName;
 
-- B3AdTypeInterstitial : interstitial
-  - B3AdSize320x480 : 320x480
-  - B3AdSize480x800 : 480x800
-  - B3AdSize640x960 : 640x960 
-- B3AdTypeBanner : popup
-  - B3AdSize300x50 : 300x150
-  - B3AdSize320x50 : 320x150 
-- B3AdTypeBanner : banner
-  - B3AdSize300x50 : 300x50
-  - B3AdSize320x50 : 320x50
+### Hide Ads on Screen
 
+For screens in which no ads are displayed,  set the** isAdVisible** value to NO.
+
+- (void) viewWillAppear:(BOOL) animated
+
+{
+
+    [FanServer setIsAdVisible:NO];
+
+    [super viewWillAppear:animated];
+
+}
+
+**Configuration Tip: ** Remember to call [super viewWillAppear:animated].
+
+### Enable or Disable Ad on Current Screen
+
+### eg. [FanServer setIsAdVisible: NO];
+
+### + (void) setIsAdVisible: (BOOL) isVisible;
+
+### Configuration Tip:  The difference between Hiding Ads on Screen and Enabling Ads on Current Screen
+
+	+ (void) setShowAdOnLoad:(BOOL)c;
+
+### Change Default to Show Ads Manuualy or Automatically
+
+You can decide whether to show ads automatically when the screen appears.
+
+* When you set the property to NO, you can show an ad manually by using a **showAd** method. However for each **UIViewController **you want to display the ad automatically, you must set the ad property to YES, as example below.
+
+	[FanServer setIsAdVisible: YES];
+
+* When you change the property to YES, you have to set [FanServer setIsAdVisible: NO]; for each **UIViewController** that you don’t want to show the ad automatically. 
+
+	[FanServer setIsAdVisible: NO];
+
+	eg. [FanServer setShowAdOnLoad:NO];
+
+### Close Banner Ads
+
+When you scroll or go back to a previous screen, banner ads will be closed automatically after a few seconds.
+
+But when you change settings in **viewWillDisappear**, remember to call **[super viewWillDisappear:animated]; **to ensure that ad was correctly closed.** **
+
+### Show Ads When They Finish Downloading
+
+When you want to display an ad, but assets have not finised downloading, there are two ways to go:
+
+* To make sure that ads do not appear,use** setWaitForImages:NO** 
+
+* To display the ad when the download is finished, use** setWaitForImages:YES** -  
+
+eg. [FanServer setWaitForImages:YES];
+
++ (void) setWaitForImages: (BOOL) wait;
+
+**Enable or Disable Rotating Banner Ad **
+
+When the device displays ads in landscape, use this method to turn the ad on or off.
+
+eg. [FanServer setRotateBannerInLandscape: YES];
+
++ (void) setRotateBannerInLandscape: (BOOL) rotate;
+
+### Configure Animation Style
+
+Developer could choose one of styles that we’ve created in SDK for displaying ads. He can’t define his own style.  So he can choose if ad should enter to the main screen from left, right, top, bottom or fade (change alpha from 0 to 1)
+
+ eg. [FanServer setAnimationStyle: FanServerAdAnimationFade];
+
+ available animation styles:
+
+typedef enum{
+
+    FanServerAdAnimationFromLeft = 1,
+
+    FanServerAdAnimationFromRight,
+
+    FanServerAdAnimationFromTop,
+
+    FanServerAdAnimationFromBottom,
+
+    FanServerAdAnimationFade
+
+} FanServerAdAnimationOptions;
+
++ (void) setAnimationStyle: (FanServerAdAnimationOptions) style;
+
+### Set Video Pre-Roll Before Playing Audio
+
+Use this procedure when you want to play a  video preroll before the audio begins.
+
+- (void) viewWillAppear:(BOOL) animated
+
+{
+
+    [FanServer setAudioPlaying:YES];
+
+    [super viewWillAppear:animated];
+
+}
+
+**FanServer Filters**
+
+You have opportunities to target your ads for specified group or locations.
+
+### Enable Device to Get Location
+
+You have ability to display ads for a specific location or region, just allow to get user location and set properly your settings.
+
+ eg. [FanServer allowGetLocation:YES];
+
++ (void) allowGetLocation: (BOOL) choice;
+
+### Filter Ads by Age
+
+You can filter ads by age and display different for users who are adult or kids.
+
+eg. [FanServer setAge: 20];
+
++ (void) setAge: (int) age;
+
+### Filter Ads by Gender
+
+You have ability to display ads depending on the user gender, just provide their gender to the method described below.
+
+typedef enum{
+
+    FanServerAdFemale = 1,
+
+    FanServerAdMale,
+
+    FanServerAdAny
+
+} FanServerAdGender;
+
++ (void) setGender: (FanServerAdGender) gender;
+
+## Advanced Methods and Properties
+
+**Delegate Methods**
+
+Use **setAdsDelegate** to deal with certain situations such as making a banner appear,closing a banner and tapping an ad. 
+
++ (void) setAdsDelegate:(id<FanServerAdsDelegate>)delegate;
+
+Use methods from the following list:
+
+@protocol FanServerAdsDelegate <NSObject>
+
+@optional
+
+- (void) fanServerBannerDidAppear;
+
+- (void) fanServerBannerDidClose;
+
+- (void) fanServerInterstitialDidAppear;
+
+- (void) fanServerInterstitialDidClose;
+
+- (void) fanServerAdDidFail;
+
+- (void) fanServerPopupDidAppear;
+
+- (void) fanServerPopupDidClose;
+
+- (void) fanServerRequestDidFail;
+
+- (void) fanServerAdTapped;
+
+- (void) fanServerDidBackFromAdView;
+
+@end
+
+
+
+**Examples:**
+
+**[INTERSTITIA**L](http://fanserv.scottarnold.org/advertisers/#)
+
+**Standard / Retina**
+
+**300x250 / 600x500**
+
+![image alt text](image_3.png)
+
+**[BANNE**R](http://fanserv.scottarnold.org/advertisers/#)
+
+**Standard / Retina**
+
+**320x50 / 640x50**
+
+![image alt text](image_4.png)
+
+**[EXPANDABL**E](http://fanserv.scottarnold.org/advertisers/#)
+
+**Standard / Retina**
+
+**320x50 / 640x50**
+
+![image alt text](image_5.png)
+
+**[VIDE**O](http://fanserv.scottarnold.org/advertisers/#)
+
+**Standard / Retina**
+
+**320x480 / 640x960**
+
+![image alt text](image_6.png)
 
