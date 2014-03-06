@@ -37,7 +37,7 @@
 
 1. [Delegate Methods](#1-delegate-methods)
 
-### [Examples](#examples)
+### [Examples](#examples-1)
 
 
 ## Integration Guidelines
