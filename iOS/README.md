@@ -10,6 +10,7 @@
   * Required Framework Configuration Settings
   * Optional Framework Configuration Settings
 3. Configuration Tip: Adding Header Information
+4. Configuration Tip: Preload Ads for Specific Device Type and Banner Size
     
 ### Customizing FanServer
 
@@ -87,7 +88,7 @@ Method required to set main window of your application, please be sure that this
 
 eg. `[FanServer setWindow: [appDelegate window]];`
 
-```csharp
+```objective-c
 + (void) setWindow: (UIWindow *) w;
 ```
 
@@ -97,7 +98,7 @@ Next required method which identifies your application and provides appropriate 
 
 eg. `[FanServer setAppid: @"YOUR_ID"];`
 
-```csharp
+```objective-c
 + (void) setAppid:(NSString *)appId;
 ```
 
@@ -107,9 +108,9 @@ The framework remembers your most recent choice of values for font type, screen 
 
 eg. `[FanServer setAdType: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];`
 
-available ad types:
+Available ad types:
 
-```csharp
+```objective-c
 typedef enum{
     FanServerAdTypeInterstitial = 1,
     FanServerAdTypeBanner,
@@ -120,198 +121,174 @@ typedef enum{
 } FanServerAdType;
 ```
 
-**List of Available Ad Types**
+Available device types:
 
-available ad types
-
+```objective-c
 typedef enum{
-
-    FanServerAdTypeInterstitial = 1,
-
-    FanServerAdTypeBanner,
-
-    FanServerAdTypeLeaderboard,
-
-    FanServerAdTypeSkyscraper,
-
-    FanServerAdTypeExpandable,
-
-    FanServerAdTypePopup
-
-} FanServerAdType;
-
-### List of Available Device Types
-
-typedef enum{
-
     FanServerDeviceTypeMobile = 1,
-
     FanServerDeviceTypeTablet,
-
     FanServerDeviceTypeWeb
-
 } FanServerDeviceType;
+```
 
 **Optional Framework Configuration Settings**
 
 In AppDelegate, configure settings for FanServer by editing default behavior of framework:
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-
+```objective-c
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)
+    launchOptions
 {
-
 	...
-
 	[FanServer setRotateBannerInLandscape:NO];
-
 	[FanServer setWaitForImages:YES];
-
 	[FanServer setAnimationStyle:FanServerAdAnimationFade];
-
 }
+```
 
-### Configuration Tip:  Adding Header Information
+### 3. Configuration Tip:  Adding Header Information
 
 When you want to add a header for a screen, add this to your project:
 
- #import <FanServerFramework/FanServer.h> 
+```objective-c
+import <FanServerFramework/FanServer.h> 
+```
 
-If you add "ProjectName"-Prefix.pch, you don't have to add this import to each header file that uses the **FanServerFramework**.
+If you add `"ProjectName"-Prefix.pch`, you don't have to add this import to each header file that uses the `FanServerFramework`.
 
-**Configuration Tip:  Preload Ads for Specific ****Device ****Type and ****Banner ****Size**
+### 4. Configuration Tip:  Preload Ads for Specific Device Type and Banner Size
 
 When you want to be sure that ad will be displayed since first time or you want to have control when ads should be downloaded use method to preload ads before they should be displayed
 
-eg. [FanServer preloadAds: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];
+eg. `[FanServer preloadAds: FanServerAdTypeBanner size: @"320x50" deviceType: FanServerDeviceTypeMobile];`
 
- available device types
+Available device types:
 
+```objective-c
 typedef enum{
-
     FanServerDeviceTypeMobile = 1,
-
     FanServerDeviceTypeTablet,
-
     FanServerDeviceTypeWeb
-
 } FanServerDeviceType;
 
 + (void) preloadAds:(FanServerAdType)type size:(NSString *)size deviceType:(FanServerDeviceType) deviceType;
+```
 
-### Customizing FanServer
-
-### Customizing the Configuration of the FanServer SDK
+## Customizing FanServer
 
 These settings give you more control of how ads are displayed.  If you do nothing the ads will be loaded and displayed with default behaviors set in the Required and Optional Framework Configuration Settings sections.
 
-### Set Ad Type
+### 1. Set Ad Type
 
 This is how to to set ad types and sizes
+```objective-c
++ setAdType:(FanServerAdType) adType size:(NSString *) size deviceType:(FanServerDeviceType) deviceType;
+```
 
-**+ setAdType:(FanServerAdType) adType size:(NSString *)size deviceType:(FanServerDeviceType) deviceType;**
+Call `[FanServer setAdType:FanServerAdType size:@"size" deviceType:FanServerDeviceType];` in function `viewWillAppear`
 
-Call **[FanServer setAdType:FanServerAdType size:@"size" deviceType:FanServerDeviceType];** in function **viewWillAppear**
-
+```objective-c
 - (void) viewWillAppear:(BOOL) animated
-
 {
-
     [FanServer setAdType:FanServerAdTypeBanner size:@"320x50" deviceType:FanServerDeviceTypeMobile];
-
     [super viewWillAppear:animated];
-
 }
+```
 
-### Specify Screen Name
+### 2. Specify Screen Name
 
-By specifying a name for all screens that show ads, you improve the tracking and reporting capabilities of FanServer and will allow for reports to be run at a screen level.  So in the sample below, we would then be able to see how ads for "MainWindow" performed in aggregate on your application.  If you don't set one, the software will set a default name to **ClassName** for each specific screen and reports will only be aggregate at the application level.  
+By specifying a name for all screens that show ads, you improve the tracking and reporting capabilities of FanServer and will allow for reports to be run at a screen level.  So in the sample below, we would then be able to see how ads for "MainWindow" performed in aggregate on your application.  If you don't set one, the software will set a default name to `ClassName` for each specific screen and reports will only be aggregate at the application level.  
 
-**+ setScreenName:(NSString* ) screenName;**
+```objective-c
++ setScreenName:(NSString* ) screenName;
+[FanServer setScreenName:@"MainWindow"];
+```
 
-**[FanServer setScreenName:@"MainWindow"];**
+Set this property in `viewWillAppear`, as the following example shows:
 
-Set this property in** viewWillAppea**r, as the following example shows:
-
+```objective-c
 (void) viewWillAppear:(BOOL) animated
-
 {
-
     [FanServer setScreenName:@"MainWindow"];
-
     [super viewWillAppear:animated];
-
 }
+```
 
-**Show Ad on a Specific Screen**
+### 3. Show Ad on a Specific Screen
 
 Use this method when you want to display an ad programatically.You can use different parameters to set ad position, type and size as well as device type, orientation and screen name. 
 
 For example,
 
+```objective-c
 + (void) showBannerAd:(UIViewController*) adViewController size:(NSString *)adSize forView:(UIView *)view x:(int)x y:(int)y screenName: (NSString*) screenName;
+```
 
 And
 
+```objective-c
 + (void) showAd:(UIViewController*)adViewController x:(int)x y:(int)y adType:(FanServerAdType) type size:(NSString *)adSize deviceType:(FanServerDeviceType)deviceType orientation:(UIImageOrientation) orientation screenName: (NSString*) screenName;
+```
 
-### Hide Ads on Screen
+### 4. Hide Ads on Screen
 
 For screens in which no ads are displayed,  set the** isAdVisible** value to NO.
 
+```objective-c
 - (void) viewWillAppear:(BOOL) animated
-
 {
-
     [FanServer setIsAdVisible:NO];
-
     [super viewWillAppear:animated];
-
 }
+```
 
-**Configuration Tip: ** Remember to call [super viewWillAppear:animated].
+*Configuration Tip: Remember to call `[super viewWillAppear:animated]`.*
 
-### Enable or Disable Ad on Current Screen
+### 5. Enable or Disable Ad on Current Screen
 
-### eg. [FanServer setIsAdVisible: NO];
+```objective-c
+[FanServer setIsAdVisible: NO];
++ (void) setIsAdVisible: (BOOL) isVisible;
+```
 
-### + (void) setIsAdVisible: (BOOL) isVisible;
+*Configuration Tip:  The difference between Hiding Ads on Screen and Enabling Ads on Current Screen*
 
-### Configuration Tip:  The difference between Hiding Ads on Screen and Enabling Ads on Current Screen
-
+```objective-c
 	+ (void) setShowAdOnLoad:(BOOL)c;
+```
 
-### Change Default to Show Ads Manuualy or Automatically
+### 6. Change Default to Show Ads Manuualy or Automatically
 
 You can decide whether to show ads automatically when the screen appears.
 
-* When you set the property to NO, you can show an ad manually by using a **showAd** method. However for each **UIViewController **you want to display the ad automatically, you must set the ad property to YES, as example below.
+When you set the property to NO, you can show an ad manually by using a `showAd` method. However for each `UIViewController` you want to display the ad automatically, you must set the ad property to YES, as example below.
 
-	[FanServer setIsAdVisible: YES];
+```objective-c
+[FanServer setIsAdVisible: YES];
+```
 
-* When you change the property to YES, you have to set [FanServer setIsAdVisible: NO]; for each **UIViewController** that you don't want to show the ad automatically. 
+When you change the property to YES, you have to set `[FanServer setIsAdVisible: NO];` for each `UIViewController` that you don't want to show the ad automatically. 
 
-	[FanServer setIsAdVisible: NO];
+```objective-c
+[FanServer setIsAdVisible: NO];
+[FanServer setShowAdOnLoad:NO];
+```
 
-	eg. [FanServer setShowAdOnLoad:NO];
-
-### 
-Close Banner Ads
+### 7. Close Banner Ads
 
 When you scroll or go back to a previous screen, banner ads will be closed automatically after a few seconds.
 
-But when you change settings in **viewWillDisappear**, remember to call **[super viewWillDisappear:animated]; **to ensure that ad was correctly closed.** **
+But when you change settings in `viewWillDisappear`, remember to call `[super viewWillDisappear:animated];` to ensure that ad was correctly closed.
 
-### Show Ads When They Finish Downloading
+### 8. Show Ads When They Finish Downloading
 
 When you want to display an ad, but assets have not finised downloading, there are two ways to go:
 
-* To make sure that ads do not appear,use** setWaitForImages:NO** 
-
-* To display the ad when the download is finished, use** setWaitForImages:YES** -  
-
-eg. [FanServer setWaitForImages:YES];
-
-+ (void) setWaitForImages: (BOOL) wait;
+1. To make sure that ads do not appear,use `setWaitForImages:NO`
+2. To display the ad when the download is finished, use `setWaitForImages:YES` 
+    ```objective-c
+    [FanServer setWaitForImages:YES];
+    + (void) setWaitForImages: (BOOL) wait;
+    ```
 
 **Enable or Disable Rotating Banner Ad **
 
