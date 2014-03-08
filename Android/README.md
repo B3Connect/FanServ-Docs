@@ -16,7 +16,7 @@
   * [resetBannerPosition](#resetbannerposition)
   * [setCheckDoubleAdShowOnResume](#setcheckdoubleadshowonresume)
   
-## 1. Integration Guidelines
+## 1. Introduction
 
 To work correctly the Ad server is required:
 
