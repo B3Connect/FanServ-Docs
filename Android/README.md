@@ -1,7 +1,22 @@
 # FanServer Android SDK Integration
 
-
-### 1. Introduction
+1. [Introduction](#1-introduction)
+2. [Configuration](#2-configuration)
+3. [Show Ad For Screen](#3-show-ad-for-screen)
+4. [Public Methods - Configuration Options](#4-public-methods---configuration-options)
+  * setAnimationStyle
+  * setBannerOutAnimationStyle
+  * setWaitForImages
+  * setInterstitialOverridePendingTransition
+  * setGps
+  * setAge
+  * setGender
+  * setBannerAlign
+  * setBannerMargin
+  * resetBannerPosition
+  * setCheckDoubleAdShowOnResume
+  
+## 1. Integration Guidelines
 
 To work correctly the Ad server is required:
 
@@ -13,7 +28,7 @@ To work correctly the Ad server is required:
   `<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>`
 1. Minimum API version: v8 Android 2.2 Froyo.
 
-### 2. Configuration
+## 2. Configuration
 
 For communication with the server is used for an object of class AdServer. AdServer is a singleton class. Reading is the class object through a static method:
 
@@ -29,7 +44,7 @@ public void init(String app_id)
 public void init(String app_id, String league)
 ```
 
-### 3. Show Ad for screen
+## 3. Show Ad for screen
 
 Displaying the ads in any activity carried out by calling one of the methods:
 
@@ -59,9 +74,9 @@ public void startAd(Activity activity)
 
 This method of display advertising to the previously set values or default values: `B3AdTypeBanner` and `B3AdSize300x50`;
 
-### 4. Public methods - configuration options
+## 4. Public methods - configuration options
 
-**setAnimationStyle**
+## setAnimationStyle
 
 ```java
 public void setAnimationStyle(B3AdAnimation style)
@@ -75,7 +90,7 @@ Available enter animation style for banner:
 - B3AdAnimationFromBottom
 - B3AdAnimationFadeIn
 
-**setBannerOutAnimationStyle**
+## setBannerOutAnimationStyle
 
 ```java
 public void setBannerOutAnimationStyle(B3AdAnimation style)
@@ -89,7 +104,7 @@ Available exit animation style for banner:
 - B3AdAnimationToBottom
 - B3AdAnimationFadeOut
 
-**setWaitForImages**
+## setWaitForImages
 
 ```java
 public void setWaitForImages(boolean wait)
@@ -100,7 +115,7 @@ In case when you are trying to show ad, but assets have not been downloaded yet,
 - `TRUE` - ad will be shown when assets downloading will finish.
 - `FALSE` - ad will not be shown for this screen
 
-**setInterstitialOverridePendingTransition**
+## setInterstitialOverridePendingTransition
 
 ```java
 public void setInterstitialOverridePendingTransition(int _enterAnim, int _exitAnim)
@@ -108,7 +123,7 @@ public void setInterstitialOverridePendingTransition(int _enterAnim, int _exitAn
 
 Method for setting the input and output of system animation interstitial ads
 
-**setGps**
+## setGps
 
 ```java
 public void setGps(double latitude, double longitude)
@@ -116,7 +131,7 @@ public void setGps(double latitude, double longitude)
 
 Set gps position
 
-**setAge**
+## setAge
 
 ```java
 public void setAge(int age)
@@ -124,7 +139,7 @@ public void setAge(int age)
 
 Set user age
 
-**setGender**
+## setGender
 
 ```java
 public void setGender(B3AdServer gender)
@@ -132,7 +147,7 @@ public void setGender(B3AdServer gender)
 
 Set user gender
 
-**setBannerAlign**
+## setBannerAlign
 
 ```java
 public void setBannerAlign(B3Align align)
@@ -147,7 +162,7 @@ Set banner position on the screen. Available  position:
 - B3AlignTopCenter
 - B3AlignTopRight
 
-**setBannerMargin**
+## setBannerMargin
 
 ```java
 public void setBannerMargin(int y)
@@ -155,7 +170,7 @@ public void setBannerMargin(int y)
 
 Set banner margin from top (B3AlignTop...) or bottom (B3Align...)
 
-**resetBannerPosition**
+## resetBannerPosition
 
 ```java
 public void resetBannerPosition()
@@ -163,7 +178,7 @@ public void resetBannerPosition()
 
 Reset baner position to default: B3AlignLeft and margin = 0  
 
-**setCheckDoubleAdShowOnResume**
+## setCheckDoubleAdShowOnResume
 
 ```java
 public void setCheckDoubleAdShowOnResume(boolean check)
@@ -173,17 +188,3 @@ Running an internal test of the advertising call one activity. (default: `TRUE`)
 
 - `TRUE` - advertising activity automatically invokes the method onResume () - display the ads in the display window or the return of another activity.
 - `FALSE` - calling multiple ads in one activity - call advertising inside the method OnCreate and / or events on the basis of inside activities.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
