@@ -76,7 +76,7 @@ This method of display advertising to the previously set values or default value
 
 ## 4. Public methods - configuration options
 
-## setAnimationStyle
+### setAnimationStyle
 
 ```java
 public void setAnimationStyle(B3AdAnimation style)
@@ -90,7 +90,7 @@ Available enter animation style for banner:
 - B3AdAnimationFromBottom
 - B3AdAnimationFadeIn
 
-## setBannerOutAnimationStyle
+### setBannerOutAnimationStyle
 
 ```java
 public void setBannerOutAnimationStyle(B3AdAnimation style)
@@ -104,7 +104,7 @@ Available exit animation style for banner:
 - B3AdAnimationToBottom
 - B3AdAnimationFadeOut
 
-## setWaitForImages
+### setWaitForImages
 
 ```java
 public void setWaitForImages(boolean wait)
@@ -115,7 +115,7 @@ In case when you are trying to show ad, but assets have not been downloaded yet,
 - `TRUE` - ad will be shown when assets downloading will finish.
 - `FALSE` - ad will not be shown for this screen
 
-## setInterstitialOverridePendingTransition
+### setInterstitialOverridePendingTransition
 
 ```java
 public void setInterstitialOverridePendingTransition(int _enterAnim, int _exitAnim)
@@ -123,7 +123,7 @@ public void setInterstitialOverridePendingTransition(int _enterAnim, int _exitAn
 
 Method for setting the input and output of system animation interstitial ads
 
-## setGps
+### setGps
 
 ```java
 public void setGps(double latitude, double longitude)
@@ -131,7 +131,7 @@ public void setGps(double latitude, double longitude)
 
 Set gps position
 
-## setAge
+### setAge
 
 ```java
 public void setAge(int age)
@@ -139,7 +139,7 @@ public void setAge(int age)
 
 Set user age
 
-## setGender
+### setGender
 
 ```java
 public void setGender(B3AdServer gender)
@@ -147,7 +147,7 @@ public void setGender(B3AdServer gender)
 
 Set user gender
 
-## setBannerAlign
+### setBannerAlign
 
 ```java
 public void setBannerAlign(B3Align align)
@@ -162,7 +162,7 @@ Set banner position on the screen. Available  position:
 - B3AlignTopCenter
 - B3AlignTopRight
 
-## setBannerMargin
+### setBannerMargin
 
 ```java
 public void setBannerMargin(int y)
@@ -170,7 +170,7 @@ public void setBannerMargin(int y)
 
 Set banner margin from top (B3AlignTop...) or bottom (B3Align...)
 
-## resetBannerPosition
+### resetBannerPosition
 
 ```java
 public void resetBannerPosition()
@@ -178,7 +178,7 @@ public void resetBannerPosition()
 
 Reset baner position to default: B3AlignLeft and margin = 0  
 
-## setCheckDoubleAdShowOnResume
+### setCheckDoubleAdShowOnResume
 
 ```java
 public void setCheckDoubleAdShowOnResume(boolean check)
