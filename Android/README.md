@@ -4,17 +4,17 @@
 2. [Configuration](#2-configuration)
 3. [Show Ad For Screen](#3-show-ad-for-screen)
 4. [Public Methods - Configuration Options](#4-public-methods---configuration-options)
-  * setAnimationStyle
-  * setBannerOutAnimationStyle
-  * setWaitForImages
-  * setInterstitialOverridePendingTransition
-  * setGps
-  * setAge
-  * setGender
-  * setBannerAlign
-  * setBannerMargin
-  * resetBannerPosition
-  * setCheckDoubleAdShowOnResume
+  * [setAnimationStyle](#setanimationstyle)
+  * [setBannerOutAnimationStyle](#setbanneroutanimationstyle)
+  * [setWaitForImages](#setwaitforimages)
+  * [setInterstitialOverridePendingTransition](#setinterstitialoverridependingtransition)
+  * [setGps](#setgps)
+  * [setAge](#setage)
+  * [setGender](#setgender)
+  * [setBannerAlign](#setbanneralign)
+  * [setBannerMargin](#setbannermargin)
+  * [resetBannerPosition](#resetbannerposition)
+  * [setCheckDoubleAdShowOnResume](#setcheckdoubleadshowonresume)
   
 ## 1. Integration Guidelines
 
