@@ -52,7 +52,7 @@ Displaying the ads in any activity carried out by calling one of the methods:
 public void startAd(Activity activity, String ad_type, String ad_size)
 ```
 
-where `ad_type` and `ad_type` are one of the following values:
+where `ad_type` and `ad_size` are one of the following values:
 
 - B3AdTypeInterstitial : interstitial
   - B3AdSize320x480 : 320x480
