@@ -16,17 +16,16 @@
 ### [Customizing FanServ](#customizing-fanserv-1)
 
 1. [Set Ad Type](#1-set-ad-type)
-2. [Change server address](#2-change-server-address)
-3. [Specify Screen Name](#3-specify-screen-name)
-4. [Show Ad on a Specific Screen](#4-show-ad-on-a-specific-screen)
-5. [Hide Ads on Screen](#5-hide-ads-on-screen)
-6. [Enable or Disable Ad on Current Screen](#6-enable-or-disable-ad-on-current-screen)
-7. [Change Default to Show Ads Manuualy or Automatically](#7-change-default-to-show-ads-manuualy-or-automatically)
-8. [Close Banner Ads](#8-close-banner-ads)
-9. [Show Ads When They Finish Downloading](#9-show-ads-when-they-finish-downloading)
-10. [Enable or Disable Rotating Banner Ad](#10-enable-or-disable-rotating-banner-ad)
-11. [Configure Animation Style](#11-configure-animation-style)
-12. [Set Video Pre-Roll Before Playing Audio](#12-set-video-pre-roll-before-playing-audio)
+2. [Specify Screen Name](#2-specify-screen-name)
+3. [Show Ad on a Specific Screen](#3-show-ad-on-a-specific-screen)
+4. [Hide Ads on Screen](#4-hide-ads-on-screen)
+5. [Enable or Disable Ad on Current Screen](#5-enable-or-disable-ad-on-current-screen)
+6. [Change Default to Show Ads Manuualy or Automatically](#6-change-default-to-show-ads-manuualy-or-automatically)
+7. [Close Banner Ads](#7-close-banner-ads)
+8. [Show Ads When They Finish Downloading](#8-show-ads-when-they-finish-downloading)
+9. [Enable or Disable Rotating Banner Ad](#9-enable-or-disable-rotating-banner-ad)
+10. [Configure Animation Style](#10-configure-animation-style)
+11. [Set Video Pre-Roll Before Playing Audio](#11-set-video-pre-roll-before-playing-audio)
     
 ### [FanServer Filters](#fanserver-filters-1)
 
@@ -84,17 +83,6 @@ Configuring the settings provides you an opportunity to customize your applicati
 **Required Framework Configuration Settings**
 
 In AppDelegate, configure settings for FanServer by editing default behavior of framework:
-
-```objective-c
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-	...
-[FanServer setWindow:self.window];
-[FanServer setAppid:@"SECRET"];
-[FanServer setAdType:FanServerAdTypeBanner size:@"320x50" deviceType:FanServerDeviceTypeMobile];
-[FanServer setServerAddress: FanServerQa];
-}
-```
 
 ![](image_2.png)
 
@@ -212,25 +200,7 @@ Call `[FanServer setAdType:FanServerAdType size:@"size" deviceType:FanServerDevi
 }
 ```
 
-### 2. Change Server Address
-
-Use this method to change server address
-
-```objective-c
-typedef enum{
-	FanServerProd,
-	FanServerQa
-} FanServerAddress;
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-	...
-[FanServer setServerAddress: FanServerQa];
-    ...
-}
-```
-
-### 3. Specify Screen Name
+### 2. Specify Screen Name
 
 By specifying a name for all screens that show ads, you improve the tracking and reporting capabilities of FanServer and will allow for reports to be run at a screen level.  So in the sample below, we would then be able to see how ads for "MainWindow" performed in aggregate on your application.  If you don't set one, the software will set a default name to `ClassName` for each specific screen and reports will only be aggregate at the application level.  
 
@@ -249,7 +219,7 @@ Set this property in `viewWillAppear`, as the following example shows:
 }
 ```
 
-### 4. Show Ad on a Specific Screen
+### 3. Show Ad on a Specific Screen
 
 Use this method when you want to display an ad programatically.You can use different parameters to set ad position, type and size as well as device type, orientation and screen name. 
 
@@ -265,7 +235,7 @@ And
 + (void) showAd:(UIViewController*)adViewController x:(int)x y:(int)y adType:(FanServerAdType) type size:(NSString *)adSize deviceType:(FanServerDeviceType)deviceType orientation:(UIImageOrientation) orientation screenName: (NSString*) screenName;
 ```
 
-### 5. Hide Ads on Screen
+### 4. Hide Ads on Screen
 
 For screens in which no ads are displayed,  set the** isAdVisible** value to NO.
 
@@ -279,7 +249,7 @@ For screens in which no ads are displayed,  set the** isAdVisible** value to NO.
 
 *Configuration Tip: Remember to call `[super viewWillAppear:animated]`.*
 
-### 6. Enable or Disable Ad on Current Screen
+### 5. Enable or Disable Ad on Current Screen
 
 ```objective-c
 [FanServer setIsAdVisible: NO];
@@ -292,7 +262,7 @@ For screens in which no ads are displayed,  set the** isAdVisible** value to NO.
 	+ (void) setShowAdOnLoad:(BOOL)c;
 ```
 
-### 7. Change Default to Show Ads Manuualy or Automatically
+### 6. Change Default to Show Ads Manuualy or Automatically
 
 You can decide whether to show ads automatically when the screen appears.
 
@@ -309,13 +279,13 @@ When you change the property to YES, you have to set `[FanServer setIsAdVisible:
 [FanServer setShowAdOnLoad:NO];
 ```
 
-### 8. Close Banner Ads
+### 7. Close Banner Ads
 
 When you scroll or go back to a previous screen, banner ads will be closed automatically after a few seconds.
 
 But when you change settings in `viewWillDisappear`, remember to call `[super viewWillDisappear:animated];` to ensure that ad was correctly closed.
 
-### 9. Show Ads When They Finish Downloading
+### 8. Show Ads When They Finish Downloading
 
 When you want to display an ad, but assets have not finised downloading, there are two ways to go:
 
@@ -326,7 +296,7 @@ When you want to display an ad, but assets have not finised downloading, there a
 + (void) setWaitForImages: (BOOL) wait;
 ```
 
-### 10. Enable or Disable Rotating Banner Ad
+### 9. Enable or Disable Rotating Banner Ad
 
 When the device displays ads in landscape, use this method to turn the ad on or off.
 
@@ -335,7 +305,7 @@ When the device displays ads in landscape, use this method to turn the ad on or 
 + (void) setRotateBannerInLandscape: (BOOL) rotate;
 ```
 
-### 11. Configure Animation Style
+### 10. Configure Animation Style
 
 Developer could choose one of styles that we've created in SDK for displaying ads. He can't define his own style.  So he can choose if ad should enter to the main screen from left, right, top, bottom or fade (change alpha from 0 to 1)
 
@@ -354,7 +324,7 @@ typedef enum{
 + (void) setAnimationStyle: (FanServerAdAnimationOptions) style;
 ```
 
-### 12. Set Video Pre-Roll Before Playing Audio
+### 11. Set Video Pre-Roll Before Playing Audio
 
 Use this procedure when you want to play a  video preroll before the audio begins.
 
